@@ -7,9 +7,14 @@ HashTable.prototype.insert = function(k, v){
   var i = getIndexBelowMaxForKey(k, this._limit);
   if(this._storage.get(i) === undefined){
   	var house = {};
+  	house[k] = v
+	return this._storage.set(i, house)
   }
-  house[k] = v
-  return this._storage.set(i, house)
+  if(this._storage.get(i) !== undefined){
+  	this._storage.get(i)[k] = v
+  }
+  // house[k] = v
+  // return this._storage.set(i, house)
 
 };
 
